@@ -33,7 +33,7 @@ def animate(group):
 size = width, height = 800, 600
 screen = pygame.display.set_mode(size)
 screen.fill([255, 255, 255])
-img_file = "../../Downloads/123/RedBall.png"
+img_file = "RedBall.png"
 group = pygame.sprite.Group()
 for row in range(2):
     for column in range(2):

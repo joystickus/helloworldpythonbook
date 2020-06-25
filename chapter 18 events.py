@@ -1,4 +1,5 @@
 import pygame, sys
+
 pygame.init()
 screen = pygame.display.set_mode([800,600])
 background = pygame.Surface(screen.get_size())
@@ -13,12 +14,12 @@ class Ball(pygame.sprite.Sprite):
         self.rect.left, self.rect.top = location
         self.speed = speed
     def move(self):
-        if self.rect.left <= screen.get_rect().left or self.rect.right >= screen.get_rect().right:
+        if self.rect.left <= screen.get_rect().left or self.rect.right >=screen.get_rect().right:
             self.speed[0] = - self.speed[0]
         newpos = self.rect.move(self.speed)
         self.rect = newpos
 
-my_ball = Ball('RedBall.png', [10,0], [20,20])
+my_ball = Ball("RedBall.png", [10,0], [20,20])
 running = True
 while running:
     for event in pygame.event.get():

@@ -24,15 +24,23 @@ pygame.key.set_repeat(delay, interval)
 
 my_ball = Ball("RedBall.png", [10,0], [20,20])
 running = True
+held_down = False
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-        elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_UP:
-                my_ball.rect.top = my_ball.rect.top - 10
-            elif event.key == pygame.K_DOWN:
-                my_ball.rect.top = my_ball.rect.top + 10
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            held_down = True
+        elif event.type == pygame.MOUSEBUTTONUP:
+            held_down = False
+        elif event.type == pygame.MOUSEMOTION:
+            if held_down:
+                my_ball.rect.center = event.pos
+        # elif event.type == pygame.KEYDOWN:
+        #     if event.key == pygame.K_UP:
+        #         my_ball.rect.top = my_ball.rect.top - 10
+        #     elif event.key == pygame.K_DOWN:
+        #         my_ball.rect.top = my_ball.rect.top + 10
     clock.tick(30)
     screen.blit(background, (0,0))
     my_ball.move()

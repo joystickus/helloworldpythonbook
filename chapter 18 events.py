@@ -1,5 +1,4 @@
 import pygame, sys
-
 pygame.init()
 screen = pygame.display.set_mode([800,600])
 background = pygame.Surface(screen.get_size())
@@ -19,12 +18,21 @@ class Ball(pygame.sprite.Sprite):
         newpos = self.rect.move(self.speed)
         self.rect = newpos
 
+delay = 100
+interval = 50
+pygame.key.set_repeat(delay, interval)
+
 my_ball = Ball("RedBall.png", [10,0], [20,20])
 running = True
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_UP:
+                my_ball.rect.top = my_ball.rect.top - 10
+            elif event.key == pygame.K_DOWN:
+                my_ball.rect.top = my_ball.rect.top + 10
     clock.tick(30)
     screen.blit(background, (0,0))
     my_ball.move()
